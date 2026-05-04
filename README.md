@@ -1,20 +1,20 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+🚀 Kirana Stock Alert App
 
-# Run and deploy your AI Studio app
+Kirana Stock Alert App is a web-based inventory management solution designed for small retail (kirana) store owners to efficiently track and manage their stock levels in real time. The application enables users to update product quantities, monitor inventory status, and receive alerts when items reach low-stock thresholds, helping prevent stockouts and improve daily operations.
 
-This contains everything you need to run your app locally.
+The platform focuses on simplicity and usability, making it accessible for non-technical users while solving a real-world problem faced by local businesses. It is deployed and accessible online for practical usage.
 
-View your app in AI Studio: https://ai.studio/apps/e8294e74-6dc4-4e3f-9428-fe4e974b0b29
+🔗 Live App: https://kiranastockalertapp.onrender.com
 
-## Run Locally
+🛠️ Tech Stack
+Frontend: HTML, CSS, JavaScript / React
+Backend: Node.js, Express
+Database: (Add yours — MongoDB / Firebase / etc.)
+✨ Key Features
+Real-time inventory tracking
+Low-stock alert system
+User-friendly interface for easy stock management
+Designed for small-scale retail businesses
+🎯 Objective
 
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+To digitize and simplify inventory management for kirana stores, reducing manual effort and improving efficiency.
