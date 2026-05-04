@@ -1,0 +1,60 @@
+{
+  "entities": {
+    "InventoryItem": {
+      "title": "Inventory Item",
+      "description": "An item in the store's inventory",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Name of the item" },
+        "category": { "type": "string", "description": "Category like Dairy, Grains, etc." },
+        "brand": { "type": "string", "description": "Brand of the product" },
+        "quantity": { "type": "number", "description": "Current stock quantity" },
+        "unit": { "type": "string", "description": "Unit of measurement (kg, l, pcs)" },
+        "price": { "type": "number", "description": "Price per unit" },
+        "lowStockThreshold": { "type": "number", "description": "Threshold for low stock alerts" },
+        "ownerId": { "type": "string", "description": "UID of the store owner" }
+      },
+      "required": ["name", "category", "quantity", "unit", "price", "lowStockThreshold", "ownerId"]
+    },
+    "Sale": {
+      "title": "Sale Record",
+      "description": "A record of a sales transaction",
+      "type": "object",
+      "properties": {
+        "itemId": { "type": "string", "description": "Reference to the inventory item" },
+        "itemName": { "type": "string", "description": "Name of the item at time of sale" },
+        "quantity": { "type": "number", "description": "Quantity sold" },
+        "totalAmount": { "type": "number", "description": "Total amount for this transaction" },
+        "timestamp": { "type": "string", "format": "date-time", "description": "When the sale occurred" },
+        "ownerId": { "type": "string", "description": "UID of the store owner" }
+      },
+      "required": ["itemId", "itemName", "quantity", "totalAmount", "timestamp", "ownerId"]
+    },
+    "Profile": {
+      "title": "Store Profile",
+      "description": "Configuration and details for the store",
+      "type": "object",
+      "properties": {
+        "storeName": { "type": "string", "description": "Name of the store" },
+        "ownerName": { "type": "string", "description": "Name of the owner" },
+        "address": { "type": "string", "description": "Store address" },
+        "ownerId": { "type": "string", "description": "UID of the store owner" }
+      },
+      "required": ["storeName", "ownerName", "ownerId"]
+    }
+  },
+  "firestore": {
+    "inventory": {
+      "schema": "InventoryItem",
+      "description": "Collection of all items in stock"
+    },
+    "sales": {
+      "schema": "Sale",
+      "description": "Collection of all sales transactions"
+    },
+    "profiles": {
+      "schema": "Profile",
+      "description": "User profiles and store settings"
+    }
+  }
+}

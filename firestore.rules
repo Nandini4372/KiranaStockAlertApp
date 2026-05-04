@@ -1,0 +1,44 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(ownerId) {
+      return isSignedIn() && request.auth.uid == ownerId;
+    }
+
+    function isValidInventory(data) {
+      return data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
+             data.category is string &&
+             data.quantity is number &&
+             data.price is number &&
+             data.lowStockThreshold is number &&
+             data.unit is string &&
+             data.ownerId == request.auth.uid;
+    }
+
+    match /inventory/{itemId} {
+      allow read: if isSignedIn() && resource.data.ownerId == request.auth.uid;
+      allow create: if isSignedIn() && isValidInventory(request.resource.data);
+      allow update: if isSignedIn() && isOwner(resource.data.ownerId) && isValidInventory(request.resource.data);
+      allow delete: if isSignedIn() && isOwner(resource.data.ownerId);
+    }
+
+    match /sales/{saleId} {
+      allow read: if isSignedIn() && resource.data.ownerId == request.auth.uid;
+      allow create: if isSignedIn() && request.resource.data.ownerId == request.auth.uid;
+    }
+
+    match /profiles/{userId} {
+      allow read: if isSignedIn() && request.auth.uid == userId;
+      allow write: if isSignedIn() && request.auth.uid == userId;
+    }
+  }
+}
